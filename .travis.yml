@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: BVuCYUFsxU8WZdMFLIXlSfliVy7YN0jcduy8L5hxz4gCY5cr6NsAADDDwYtvgg8hXY+cWrQ+70jyv49tMLfBs/Gy6CGlBsz5ziRFTrY+JMXwdgr+ZNbSe1YAYfVZezgonOKt3k0ecG4vBdkqaLaAIU64f+u5nQcPzhM/CT2hx8xF7WqKQczEWiOYbo2VY+SuRBEY3BR7JU5PDCVAvXn7hbrEHki/fPwhjQaap4LAdBUZ5b7/dSxPgJ/1CcVaUycDA4pPetoiMigrA5eO3DSuluZzMn/nUeZJxwSwOn1eqREQw9XRZFxza3h+gOBb2rkQR+9BW+7DRpdlabx7LTr8U6aGO/Owp8n1Jxa3NVZMAA+Xd2xwJBXPBccZU/IQlkbzQXuGq69GTCLzfa7FWSPi5cfyPcdoGEKSyR4PBN+8vjDhsd081ojpuUhoEIXXzHlhHfsECg//ODNqkS3TuRF5PCsPYaVnq7wTu2N5nCD0tnURNMeA8BV9IA1P7FyTZeXhFyYf5zf8h5mgDo3BVOkJghfdQ37RsOpKJcVU1QeifQiJz9aC0hDsd0PWFgRF12LWF8mIVlaKyFQ8H79gxyEry6pn++TQcELu1LbM46n8jJZZy9eNQqLcWUIrBCxGQMA7LtpEITl3VJsMSvNhWxCbCYJEDYwfPegJQ+E7RdvVzNo=
+  app: https://protected-sierra-87597.herokuapp.com/
+  on:
+    repo: spokencode/leadrr
