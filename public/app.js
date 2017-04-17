@@ -56,16 +56,24 @@ function addNewLead(form){
             type: "POST",
             data: JSON.stringify(newLead),
             contentType: "application/json",
-            complete: console.log('DONE')
+            statusCode: {
+                201: function() {
+                  window.location.href = '/leads';
+                },
+                400: function() {
+                  console.log( "User Error" );
+                },
+                500: function() {
+                  console.log( "Server Error" );
+                }
+              }
         });
 
     this.reset();
-    //leads.push(newLead);
-    getAndDisplayLeads();
   });
 }
 
 $(function() {
-    //getAndDisplayLeads();
+    getAndDisplayLeads();
     addNewLead($('#js-form'));
 });

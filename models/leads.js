@@ -1,68 +1,71 @@
 const uuid = require('uuid');
 
-const mockLeads = {
-    "leads": [
-        {
-        "name": "John Smith",
-        "email": "jason@jasonrenai.com",
-        "phone-number": "4044445555",
-        "service-address": "123 Howell St NE",
-        "service-city": "Atlanta",
-        "service-state": "GA",
-        "service-zip-code": "30301",
-        jobs: [{
-          "job-number": "450",
-          "job-name": "House - 4+ Bedroom"
-          }]
-        },
-        {
-        "name": "Joe Williams",
-        "email": "jason@jasonrenai.com",
-        "phone-number": "7706429100",
-        "service-address": "854 Hammonds Dr NE",
-        "service-city": "Atlanta",
-        "service-state": "GA",
-        "service-zip-code": "30302",
-        jobs: [{
-          "job-number": "451",
-          "job-name": "House - 4+ Bedroom"
-          }]
-        },
-        {
-        "name": "Jane Smith",
-        "email": "jason@jasonrenai.com",
-        "phone-number": "40445556666",
-        "service-address": "456 Howell Se NE",
-        "service-city": "Atlanta",
-        "service-state": "GA",
-        "service-zip-code": "30303",
-        jobs: [{
-          "job-number": "452",
-          "job-name": "House - 2+ Bedroom"
-          }]
-        },
-        {
-        "name": "Jason Renai",
-        "email": "jason@jasonrenai.com",
-        "phone-number": "4044494455",
-        "service-address": "107 Howell Se NE",
-        "service-city": "Atlanta",
-        "service-state": "GA",
-        "service-zip-code": "30304",
-        jobs: [{
-          "job-number": "453",
-          "job-name": "House - 4+ Bedroom"
-          }]
-        },
-        
-    ]
-};
 
+const mongoose = require('mongoose');
+
+const leadSchema = mongoose.Schema({
+        "name": {type: String},
+        "email": {type: String},
+        "phone-number": {type: String},
+        "service-address": {type: String},
+        "service-city": {type: String},
+        "service-state": {type: String},
+        "service-zip-code": {type: String},
+        jobs: [{
+          "job-number": {type: String},
+          "job-name": {type: String}
+          }]
+        });
+
+leadSchema.methods.apiRepr = function() {
+  return {
+    name: this.name,
+    email: this.email,
+    "phone-number": this['phone-number'],
+    "service-address": this['service-address'],
+    "service-city": this['service-city'],
+    "service-state": this['service-state'],
+    "service-zip-code": this['service-zip-code'],
+    jobs: [{
+          "job-number": uuid.v4(),
+          "job-name": this.service
+          }]
+        };
+
+  }
+
+const leadModel = mongoose.model('leads', leadSchema);
+
+module.exports = {leadModel};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const leadList = {
   create: function(name, email, phone, address, city, state, zip, service) {
     console.log('Creating new lead');
     const lead = {
         "name": name,
+        "_id": uuid.v4(),
         "email": email,
         "phone-number": phone,
         "service-address": address,
@@ -74,7 +77,8 @@ const leadList = {
             "job-number": uuid.v4()
             }]
         };
-    this.leads[lead.id] = lead;
+    this.leads[lead._id] = lead;
+    //console.log(this.leads, 'Im here')
     return lead;
   },
   get: function() {
@@ -103,4 +107,4 @@ function createLead(){
 	return storage;
 }
 
-module.exports = {leadList: createLead()}
+module.exports = {leadList: createLead()}*/
